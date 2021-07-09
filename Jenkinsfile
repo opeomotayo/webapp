@@ -13,6 +13,15 @@ pipeline {
       }
     }
 
+  stage ('Check-Git-Secrets') {
+      steps {
+        // sh 'sudo usermod -aG docker jenkins' #add this cmd to vm and restart jenkins
+        sh 'rm trufflehog || true'
+        sh 'docker run gesellix/trufflehog --json https://github.com/opeomotayo/webapp.git > trufflehog'
+        sh 'cat trufflehog'
+      }
+    }
+    
     stage ('Source Composition Analysis') {
       steps {
          sh 'rm owasp* || true'
@@ -27,16 +36,6 @@ pipeline {
     stage ('Build') {
       steps {
         sh 'mvn clean package'
-      }
-    }
-
-    stage ('Check-Git-Secrets') {
-      steps {
-        // sh 'who'
-        // sh 'sudo usermod -aG docker $USER'
-        sh 'rm trufflehog || true'
-        sh 'docker run gesellix/trufflehog --json https://github.com/opeomotayo/webapp.git > trufflehog'
-        sh 'cat trufflehog'
       }
     }
 
