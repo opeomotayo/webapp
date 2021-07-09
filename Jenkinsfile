@@ -56,5 +56,13 @@ pipeline {
            }       
     }
 
+    stage ('DAST') {
+      steps {
+        sshagent(['zap']) {
+         sh 'ssh -o  StrictHostKeyChecking=no  vagrant@172.42.42.102 "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://172.42.42.102:8080/webapp/" || true'
+        }
+      }
+    }
+
   }
 }
