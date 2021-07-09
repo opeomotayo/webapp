@@ -51,8 +51,8 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
     <div class="container">
-        <h1>Devsecops Course - opeomotayo</h1>
-        <p>This is from dev branch. </p>
+        <h1>DevSecOps Course</h1>
+        <p>This is from dev branch. <br> By: opeomotayo.</p>
         <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
     </div>
 </div>
